@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            $(function(){ 
+                const tones = [
+                    {
+                        name: "b",
+                        colors: [
+                            '#ef6c70',
+                            '#fa8155',
+                            '#ffad36',
+                            '#fad831',
+                            '#b7c82b',
+                            '#41b879',
+                            '#00aa9f',
+                            '#0098b9',
+                            '#2981c0',
+                            '#7574bc',
+                            '#a165a8',
+                            '#d0678e'
+                        ]
+                    },
+                    {
+                        name: "s",
+                        colors: [
+                            '#c53f4d',
+                            '#cc572e',
+                            '#e19215',
+                            '#debc03',
+                            '#9cad00',
+                            '#008f56',
+                            '#00827c',
+                            '#006f92',
+                            '#005b9b',
+                            '#534c98',
+                            '#7c3d84',
+                            '#a33c6a'
+                        ]
+                    },
+                    {
+                        name: "dp",
+                        colors: [
+                            '#a61d39',
+                            '#ab3d1d',
+                            '#b16c00',
+                            '#b39300',
+                            '#748400',
+                            '#007243',
+                            '#006664',
+                            '#005476',
+                            '#004280',
+                            '#3e337b',
+                            '#612469',
+                            '#861d55'
+                        ]
+                    },
+                    {
+                        name: "lt",
+                        colors: [
+                            '#f6aba5',
+                            '#ffb99e',
+                            '#ffce90',
+                            '#fbe68f',
+                            '#d8df92',
+                            '#9cd9ac',
+                            '#7eccc1',
+                            '#79baca',
+                            '#83a7c8',
+                            '#a29fc7',
+                            '#b89ab8',
+                            '#daa0b3'
+                        ]
+                    },
+                    {
+                        name: "sf",
+                        colors: [
+                            '#ca8281',
+                            '#da927a',
+                            '#dba66b',
+                            '#d3bd6c',
+                            '#adb66b',
+                            '#76b18a',
+                            '#54a39b',
+                            '#5192a4',
+                            '#5d7ea0',
+                            '#7878a0',
+                            '#907194',
+                            '#b4788b'
+                        ]
+                    },
+                    {
+                        name: "d",
+                        colors: [
+                            '#a35a5c',
+                            '#af6954',
+                            '#b37f46',
+                            '#ab9446',
+                            '#858f46',
+                            '#4f8766',
+                            '#2a7b76',
+                            '#246a7d',
+                            '#34597d',
+                            '#54527c',
+                            '#6c4a71',
+                            '#8b4f65'
+                        ]
+                    },
+                    {
+                        name: "dk",
+                        colors: [
+                            '#692934',
+                            '#75362a',
+                            '#794d1c',
+                            '#74601f',
+                            '#525b20',
+                            '#23523a',
+                            '#004746',
+                            '#004558',
+                            '#123452',
+                            '#322d51',
+                            '#432848',
+                            '#612d46'
+                        ]
+                    },
+                    {
+                        name: "p",
+                        colors: [
+                            '#e7d5d4',
+                            '#e9d5cf',
+                            '#f6e3ce',
+                            '#efe6c6',
+                            '#e6e9c6',
+                            '#c4e0cb',
+                            '#bfe0d9',
+                            '#c6dde2',
+                            '#c2ccd5',
+                            '#c9cad5',
+                            '#d0c8d1',
+                            '#e4d5d9'
+                        ]
+                    },
+                    {
+                        name: "ltg",
+                        colors: [
+                            '#c0abaa',
+                            '#c1aba5',
+                            '#cebba8',
+                            '#c6bea1',
+                            '#bdc1a2',
+                            '#9db6a5',
+                            '#98b6b1',
+                            '#9eb4b9',
+                            '#9ba5af',
+                            '#a2a2af',
+                            '#aba0ab',
+                            '#bdacb0'
+                        ]
+                    },
+                    {
+                        name: "g",
+                        colors: [
+                            '#745c5c',
+                            '#755c57',
+                            '#806c5c',
+                            '#786f57',
+                            '#6e725a',
+                            '#53665a',
+                            '#4e6764',
+                            '#4f656c',
+                            '#4c5765',
+                            '#565566',
+                            '#605262',
+                            '#725c63'
+                        ]
+                    },
+                    {
+                        name: "dkg",
+                        colors: [
+                            '#3e2d30',
+                            '#3f2e2c',
+                            '#4a3c32',
+                            '#443e30',
+                            '#3d4033',
+                            '#2a342e',
+                            '#273434',
+                            '#273439',
+                            '#222933',
+                            '#292734',
+                            '#302531',
+                            '#3d2e34'
+                        ]
+                    },
+                ]
+
+                tones.forEach(function(tone) {
+                    $('.wrapper').append('<div class="colors ' + tone.name + '">');
+                    for (text in tone.colors) {
+                        $('.colors' + '.' + tone.name).append('<div class="color ' + tone.name + '">');
+                    }
+                    $('.colors' + '.' + tone.name).append('<div class="tone-label">' + tone.name + '</div>');
+                    $('.colors' + '.' + tone.name).css('grid-area', tone.name);
+
+                    let degree =  360.0 / $('.color' + '.' + tone.name).length;
+                    let radian = (degree * Math.PI / 180.0);
+
+                    $('.colors' + '.' + tone.name).find('*')
+                                                .each(function(i, elem) {
+                        let r = $(".colors").width() / 2.0 - $(".color").width() / 2.0 - 1;
+                        // 時計回りに展開されるようマイナスを付与
+                        let x = - r * Math.cos(radian * i);
+                        let y = - r * Math.sin(radian * i);
+                        $(elem).css('left', x + r);
+                        $(elem).css('top', y + r);
+                        $(elem).css('background-color', tone.colors[i]);
+                        $(elem).text(tone.colors[i]);
+
+                    });
+                });
+
+            });
+        </script>
+        <style>
+            html {
+                font-family: 'Bebas Neue', cursive;
+            }
+            .wrapper {
+                display: grid;
+                width: 0;
+                grid-template-areas: 
+                    "p   p   lt  lt  .  ."
+                    "p   p   lt  lt  b  b"
+                    "ltg ltg sf  sf  b  b"
+                    "ltg ltg sf  sf  s  s"
+                    "g   g   d   d   s  s"
+                    "g   g   d   d   dp dp"
+                    "dkg dkg dk  dk  dp dp"
+                    "dkg dkg dk  dk  .  .";
+
+            }
+            .colors {
+                display: inline-block;
+                position: relative;
+                width: 400px;
+                height: 400px;
+                margin: 15px;
+                text-align: center;
+            }
+            .tone-label {
+                position: relative;
+                display: inline;
+                font-size: 2.5em;
+            }
+            .color {
+                position: absolute;
+                text-align: center;
+                line-height: 74px;
+                width: 74px;
+                height: 74px;
+                border-radius: 37px;
+                border: solid 1px grey;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper" />
+    </body>
+</html>
